@@ -6,24 +6,29 @@
 
 
 //list of variables for pre loaded buttons
-var jSearches = ["Hey girl", "fabulous", "totally", "happy hour", "rainbow", "happy dance", "so wrong", "ugly", "time to go", "Sweden"]
+var jSearches = ["Hey girl", "fabulous", "totally", "happy hour", "rainbow", "happy dance", "so wrong", "bye felicia", "time to go", "swedes"]
 // page load check and load buttons
 $(document).ready(function () {
 
     for (var j = 0; j < jSearches.length; j++) {
         var proto = $("<button>");
-        proto.addClass("button");
+        proto.addClass("buttons");
         proto.attr("data-name", jSearches[j]);
         proto.text(jSearches[j]);
         console.log(proto)
         $("#buttonRow").append(proto)
     }
+    $("#searchbutton").on("click", function (event) {
+        event.preventDefault();
+        var searchWord = $("#searchField").val().trim()
+        getGiphy(searchWord)
+    })
     //if loaded button pushed, define variable, call search function
     //Event delegation
-    $(document).on("click",".button", function (event) {
+    // $(document).on("click",".button", function (event) {
+    $(".buttons").on("click", function (event) {
         event.preventDefault();
         // var searchWord = $("#searchField").val().trim()\
-        
         var searchWord = $(this).attr("data-name")
         console.log(searchWord)
         getGiphy(searchWord)
@@ -38,7 +43,6 @@ $(document).ready(function () {
         //     getGiphy(searchWord)
 
     })
-
     //search giphy function (AJAX and 'then' function)
 
     function getGiphy(searchWord) {
@@ -74,7 +78,7 @@ $(document).ready(function () {
                     $("#giphyGallery").prepend(galleryDiv)
                 }
             }
-        };  
+        };
     }
 
 })
