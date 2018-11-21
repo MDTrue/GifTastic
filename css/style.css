@@ -1,5 +1,51 @@
-#giphyGallery{
+
+body {
+    background: url(../assets/images/concrete.jpg);
+    font-family: 'Fredericka the Great', cursive;  
+}
+
+header{
+    font-family: 'Fredericka the Great', cursive;
+    text-align: center;
+    font-size: 80px;
+    /* color: #1a3300; */
+    border-color: black;
+ }  
+.button{
+    font-family: 'Allerta Stencil', sans-serif;
+}
+
+.buttons{
+    font-family: 'Allerta Stencil', sans-serif;
+}
+#search{
+    margin: auto;
+    text-align: center;
+
+}
+#container{
+    background: url(../assets/images/brownPaperjpg.jpg);
+ 
+    margin: auto;
+    width: 960px;
     border-width: 3px;
     border-style: solid;
-    border-color: black
+    border-color: black;
+    font-family: 'Fredericka the Great', cursive;
+    
+    text-align: center;
+    
 }
+
+#giphyGallery{
+    display: inline;
+}
+.movGif{
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    
+}
+/* font-family: 'Allerta Stencil', sans-serif;
+font-family: 'Fredericka the Great', cursive;
+font-family: 'Paprika', cursive; */
