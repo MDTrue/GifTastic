@@ -15,11 +15,12 @@ $(document).ready(function () {
         proto.addClass("buttons");
         proto.attr("data-name", jSearches[j]);
         proto.text(jSearches[j]);
-        console.log(proto)
+        // console.log(proto)
         $("#buttonRow").append(proto)
     }
     $("#searchbutton").on("click", function (event) {
         event.preventDefault();
+        // console.log("click")
         var searchWord = $("#searchField").val().trim()
         getGiphy(searchWord)
     })
@@ -30,7 +31,7 @@ $(document).ready(function () {
         event.preventDefault();
         // var searchWord = $("#searchField").val().trim()\
         var searchWord = $(this).attr("data-name")
-        console.log(searchWord)
+        // console.log(searchWord)
         getGiphy(searchWord)
         jSearches.push(searchWord)
 
@@ -49,29 +50,33 @@ $(document).ready(function () {
 
         $.ajax({
             url: queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchWord +
-                "&api_key=dc6zaTOxFJmzC&limit=10",
+                "&api_key=dc6zaTOxFJmzC",
             method: "GET"
         }).then(function (response) {
-            console.log(response);
+            // console.log(response);
             display(response)
 
         })
+    }
         //display giphy function, clear div first, iterate through 10, store animated versions for later
         function display(response) {
             $("#giphyGallery").empty()
             var results = (response.data);
-            for (var j = 0; j < results.length; j++) {
+            for (var j = 0; j < 10; j++) {
                 if (results[j].rating !== "r") {
                     var rating = results[j].rating;
-                    console.log(rating)
+                    // console.log(rating)
                     var p = $("<p>").text(rating)
                     var galleryDiv = $("<div>");
                     var galGif = $("<img>");
-                    galGif.attr('src', results[j].images.fixed_height_still.url)
-                    // galGif.attr('data-still', results[j].images.fixed_height_still.url)
-                    // galGif.attr('data-animate', results[j].images.fixed_height.url)
+                    galGif.attr({
+                        "src": results[j].images.fixed_height_still.url,
+                        "data-still": results[j].images.fixed_height_still.url,
+                        "data-animate": results[j].images.fixed_height.url,
+                        "data-state": "still"
+                    })
 
-
+                    galGif.addClass("movGif")
                     console.log(galGif)
                     galleryDiv.append(galGif);
                     galleryDiv.append(p);
@@ -79,29 +84,31 @@ $(document).ready(function () {
                 }
             }
         };
-    }
+        $(document).on('click', '.movGif', function(){
+        // function animateGif(){
+        // $(".movGif").on("click", function() {
+            console.log("click")
+                var state = $(this).attr("data-state"); 
+                
+                if (state === "still") {
+                    
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "animate")
+                    
+                }
+                else {
+                    
+                    
+                    $(this).attr("src", $(this).attr("data-still"));
+                    $(this).attr("data-state", "still")
+                }
+            })
+            
+            
+        //     $(document).on("click", ".galGif", animateGif);
+        })
+        
 
-})
-
-
-
-
-    // $(document).on("click", ".gif", gifStart);
-    // createButtons()
-
-    // if (state === "still"){
-    // var animate = $(this).attr("data-animate");
-    //     $(this).attr("src", "animate")
-    //     $(this).attr("data-state", "animate")
-
-    // }
-    // else {
-    //     (state === "animate") {                 
-    //         var still = $(this).attr("data-still")
-    //         $(this).attr("src", "still")
-    //         $(this).attr("data-state", "still")
-    //     }
-    // }
 
 
     // var queryURL = "https://api.giphy.com/v1/gifs/search?q=rainbow&api_key=dc6zaTOxFJmzC";
