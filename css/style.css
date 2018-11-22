@@ -9,15 +9,34 @@ header{
     text-align: center;
     font-size: 80px;
     /* color: #1a3300; */
-    border-color: black;
+    
  }  
-.button{
-    font-family: 'Allerta Stencil', sans-serif;
-}
 
-.buttons{
+.buttons,.button{
     font-family: 'Allerta Stencil', sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    margin: 1px 2px;
+    border: solid 2px #68138a;;
+    border-radius: 4px;
+    padding: 3px 4px;
+    color: #68138a;
+    background-color: #e9e6df;
+    outline: none;
+
 }
+.buttons:active,.buttons:active {
+    transform: translateY(1px);
+    filter: saturate(150%);
+  }
+.buttons:hover,.buttons:focus,.button:hover,.button:focus {
+    color: #e9e6df;
+    border-color: black;
+    background-color: #68138a;
+}  
 #search{
     margin: auto;
     text-align: center;
@@ -28,24 +47,86 @@ header{
  
     margin: auto;
     width: 960px;
-    border-width: 3px;
-    border-style: solid;
-    border-color: black;
+    border-width: 1.5px;
+    border-style: dashed;
+    border-color: rgb(107, 83, 56);
     font-family: 'Fredericka the Great', cursive;
-    
+    box-shadow: 15px 15px 15px grey;
     text-align: center;
     
 }
+img{
+    /* max-width: 250px; */
+    max-height: 250px;
+   
+    box-shadow: 5px 5px 3px grey;      
+}
 
-#giphyGallery{
+label{
+    font-family: 'Paprika', cursive;
+    font-size: 22px;
+    color: darkblue;
+    width: 60%;
+    text-align: center;
+}
+#searchField{
+    font-family: 'Paprika', cursive;
+    color: darkred;
+    width: 300px;
+    margin: auto;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #68138a;
+    border-radius: 6px;
+}
+.galDiv{
+    float: left;
+    /* max-width: 275px; */
+    margin: 0px 10px 10px 0px;
+   
+}
+#giphyGallery {
     display: inline;
 }
 .movGif{
     border-width: 3px;
     border-style: solid;
     border-color: black;
+    border-radius: 13px;
+    display: inline;
     
 }
+@media screen and (max-width: 980px) {
+
+  }
+  @media screen and (max-width: 768px){
+ .container,header,#search,#buttonRow{
+     width: 768px;
+ }
+.buttons{
+    margin: 2px 4px;
+    float: left
+}
+label{
+    text-align: left
+}
+  }
+  @media screen and (max-width: 640px) {
+.container,header,#search,#buttonRow{
+        width: 640px;
+    }
+    #giphyGallery {
+        display: block;
+        float: left;
+    }
+    .galDiv{
+        float: none;
+    }
+    #searchField,.buttons,.button,label{
+        float: left;
+    }
+  
+  }
 /* font-family: 'Allerta Stencil', sans-serif;
 font-family: 'Fredericka the Great', cursive;
 font-family: 'Paprika', cursive; */
